@@ -3,3 +3,4 @@ node_modules
 .editorconfig
 tsconfig.ts
 yarn.lock
+.gitignore

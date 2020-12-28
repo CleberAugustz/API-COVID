@@ -55,6 +55,6 @@ cron.schedule("00 00 08 * * *", async () => {
     });
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Online");
 });
