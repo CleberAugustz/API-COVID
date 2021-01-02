@@ -96,7 +96,7 @@ node_cron_1.default.schedule("00 30 17 * * *", function () { return __awaiter(vo
         switch (_a.label) {
             case 0:
                 console.log("Atualização");
-                return [4 /*yield*/, main(false)];
+                return [4 /*yield*/, main(true)];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
