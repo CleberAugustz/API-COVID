@@ -53,7 +53,7 @@ app.get("/dados", function (req, res) { return __awaiter(void 0, void 0, void 0,
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Covid_1.default.findOne({}).sort({ field: "asc", _id: -1 })];
+                return [4 /*yield*/, Covid_1.default.findOne({}).sort({ field: "asc", date: -1 })];
             case 1:
                 retorno = _a.sent();
                 return [2 /*return*/, res.status(200).json(retorno)];
