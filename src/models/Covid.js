@@ -12,6 +12,12 @@ exports.CovidSchema = new mongoose_1.default.Schema({
     suspeitos: { type: String },
     recuperados: { type: String },
     descartados: { type: String },
+    newObitos: { type: String },
+    newPositivados: { type: String },
+    newTratamento: { type: String },
+    newSuspeitos: { type: String },
+    newRecuperados: { type: String },
+    newDescartados: { type: String },
     date: { type: Date },
 });
 var Covid = mongoose_1.default.model("Covid", exports.CovidSchema);

@@ -72,12 +72,12 @@ var Scrapping = /** @class */ (function () {
                         $ = cheerio_1.default.load(html.data);
                         body = $("body").find("div[class='_1xnd'] > div");
                         return [2 /*return*/, body.each(function (idx, el) { return __awaiter(_this, void 0, void 0, function () {
-                                var dia, mes, dateFormated, data, dateEnd, date, result, dados, obitos, positivados, tratamento, suspeitos, recuperados, descartados, retorno;
+                                var dia, mes, dateFormated, data, dateEnd, date, result, statusAnterior, dados, obitos, positivados, tratamento, suspeitos, recuperados, descartados, resObito, resPositivados, resTratamento, resSuspeitos, resRecuperados, resDescartados, retorno;
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
                                         case 0:
                                             data = $(el).text().toLowerCase();
-                                            if (!(data.indexOf("covid-19 em piracicaba") != -1)) return [3 /*break*/, 2];
+                                            if (!(data.indexOf("covid-19 em piracicaba") != -1)) return [3 /*break*/, 3];
                                             dateEnd = data.indexOf("·");
                                             date = data.substring(12, dateEnd);
                                             if (date.includes("de")) {
@@ -102,6 +102,12 @@ var Scrapping = /** @class */ (function () {
                                                     return [2 /*return*/];
                                                 }
                                             }
+                                            return [4 /*yield*/, Covid_1.default.findOne({}).sort({
+                                                    field: "asc",
+                                                    date: -1,
+                                                })];
+                                        case 1:
+                                            statusAnterior = _a.sent();
                                             dados = data.substring(data.indexOf("pracegover"), data.length);
                                             obitos = dados
                                                 .substring(dados.indexOf(", com") + 5, dados.indexOf("óbitos"))
@@ -121,6 +127,23 @@ var Scrapping = /** @class */ (function () {
                                             descartados = dados
                                                 .substring(dados.indexOf("recuperados") + 14, dados.indexOf("casos descartados"))
                                                 .trim();
+                                            resObito = 0;
+                                            resPositivados = 0;
+                                            resTratamento = 0;
+                                            resSuspeitos = 0;
+                                            resRecuperados = 0;
+                                            resDescartados = 0;
+                                            if (!!statusAnterior) {
+                                                resObito = +obitos - +(statusAnterior === null || statusAnterior === void 0 ? void 0 : statusAnterior.obitos);
+                                                resPositivados =
+                                                    +positivados - +(statusAnterior === null || statusAnterior === void 0 ? void 0 : statusAnterior.positivados);
+                                                resTratamento = +tratamento - +(statusAnterior === null || statusAnterior === void 0 ? void 0 : statusAnterior.tratamento);
+                                                resSuspeitos = +suspeitos - +(statusAnterior === null || statusAnterior === void 0 ? void 0 : statusAnterior.suspeitos);
+                                                resRecuperados =
+                                                    +recuperados - +(statusAnterior === null || statusAnterior === void 0 ? void 0 : statusAnterior.recuperados);
+                                                resDescartados =
+                                                    +descartados - +(statusAnterior === null || statusAnterior === void 0 ? void 0 : statusAnterior.descartados);
+                                            }
                                             retorno = new Covid_1.default({
                                                 obitos: obitos,
                                                 positivados: positivados,
@@ -128,13 +151,19 @@ var Scrapping = /** @class */ (function () {
                                                 suspeitos: suspeitos,
                                                 recuperados: recuperados,
                                                 descartados: descartados,
+                                                newObitos: resObito,
+                                                newPositivados: resPositivados,
+                                                newTratamento: resTratamento,
+                                                newSuspeitos: resSuspeitos,
+                                                newRecuperados: resRecuperados,
+                                                newDescartados: resDescartados,
                                                 date: dateFormated,
                                             });
                                             return [4 /*yield*/, retorno.save()];
-                                        case 1:
+                                        case 2:
                                             _a.sent();
-                                            _a.label = 2;
-                                        case 2: return [2 /*return*/];
+                                            _a.label = 3;
+                                        case 3: return [2 /*return*/];
                                     }
                                 });
                             }); })];
