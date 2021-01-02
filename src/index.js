@@ -45,8 +45,10 @@ require("./database");
 var node_cron_1 = __importDefault(require("node-cron"));
 var express_1 = __importDefault(require("express"));
 var Covid_1 = __importDefault(require("./models/Covid"));
+var cors_1 = __importDefault(require("cors"));
 var app = express_1.default();
 app.use(express_1.default.json());
+app.use(cors_1.default());
 app.get("/dados", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var retorno, error_1;
     return __generator(this, function (_a) {
@@ -94,7 +96,7 @@ node_cron_1.default.schedule("00 30 17 * * *", function () { return __awaiter(vo
         switch (_a.label) {
             case 0:
                 console.log("Atualização");
-                return [4 /*yield*/, main(true)];
+                return [4 /*yield*/, main(false)];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
