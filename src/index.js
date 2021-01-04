@@ -69,15 +69,20 @@ app.get("/dados", function (req, res) { return __awaiter(void 0, void 0, void 0,
 }); });
 function main(cond) {
     return __awaiter(this, void 0, void 0, function () {
-        var scrapping, error_2;
+        var scrapping, date, day, month, year, link, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
                     scrapping = new scrapping_1.default();
-                    console.log("Está funcionando");
-                    if (!process.env.URL) return [3 /*break*/, 2];
-                    return [4 /*yield*/, scrapping.execute(process.env.URL, cond)];
+                    date = new Date();
+                    day = date.getDate();
+                    month = date.getMonth() + 1;
+                    year = date.getFullYear();
+                    link = "" + process.env.URL_PORTAL + (day < 10 ? "0" + day : day) + "+0" + month + "+" + year + ".aspx";
+                    console.log("It's Working");
+                    if (!process.env.URL_PORTAL) return [3 /*break*/, 2];
+                    return [4 /*yield*/, scrapping.execute(link, cond, "PortalPiracicaba", new Date(year, month - 1, 3))];
                 case 1:
                     _a.sent();
                     _a.label = 2;
@@ -95,8 +100,8 @@ node_cron_1.default.schedule("00 30 17 * * *", function () { return __awaiter(vo
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.log("Atualização");
-                return [4 /*yield*/, main(true)];
+                console.log("Update");
+                return [4 /*yield*/, main(false)];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
