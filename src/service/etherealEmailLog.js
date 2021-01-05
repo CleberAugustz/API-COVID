@@ -60,7 +60,7 @@ var etherealEmailLog = /** @class */ (function () {
                     case 1:
                         transporter = _a.sent();
                         message = {
-                            from: process.env.EMAIL_SERVICE,
+                            from: process.env.EMAIL_AUTH_USER,
                             to: process.env.EMAIL_SEND,
                             subject: "Updated API-Covid 19 - " + new Date(),
                             text: "Updated API-Covid to today.",
