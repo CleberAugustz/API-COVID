@@ -82,7 +82,7 @@ function main(cond) {
                     link = "" + process.env.URL_PORTAL + (day < 10 ? "0" + day : day) + "+0" + month + "+" + year + ".aspx";
                     console.log("It's Working");
                     if (!process.env.URL_PORTAL) return [3 /*break*/, 2];
-                    return [4 /*yield*/, scrapping.execute(link, cond, "PortalPiracicaba", new Date(year, month - 1, 3))];
+                    return [4 /*yield*/, scrapping.execute(link, cond, "PortalPiracicaba", new Date(year, month - 1, day))];
                 case 1:
                     _a.sent();
                     _a.label = 2;
@@ -96,7 +96,7 @@ function main(cond) {
         });
     });
 }
-node_cron_1.default.schedule("00 30 17 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
+node_cron_1.default.schedule("00 00 21 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
