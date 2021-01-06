@@ -46,35 +46,31 @@ var etherealEmailLog = /** @class */ (function () {
         this.execute = function () { return __awaiter(_this, void 0, void 0, function () {
             var transporter, message;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        console.log("Credentials obtainer, sending message...");
-                        return [4 /*yield*/, nodemailer_1.default.createTransport({
-                                host: process.env.EMAIL_HOST,
-                                port: parseInt(process.env.EMAIL_PORT || "587"),
-                                auth: {
-                                    user: process.env.EMAIL_AUTH_USER,
-                                    pass: process.env.EMAIL_AUTH_PASS,
-                                },
-                            })];
-                    case 1:
-                        transporter = _a.sent();
-                        message = {
-                            from: process.env.EMAIL_AUTH_USER,
-                            to: process.env.EMAIL_SEND,
-                            subject: "Updated API-Covid 19 - " + new Date(),
-                            text: "Updated API-Covid to today.",
-                            html: "<p><b> Hello</b> this is the email to inform the update the API-Covid Piracicaba</p>",
-                        };
-                        transporter.sendMail(message, function (err, info) {
-                            if (err) {
-                                console.log("Error ocurred. " + err.message);
-                                return process.exit();
-                            }
-                            console.log("Message set: %s", info.messageId);
-                        });
-                        return [2 /*return*/];
-                }
+                console.log("Credentials obtainer, sending message...");
+                transporter = nodemailer_1.default.createTransport({
+                    service: process.env.EMAIL_SERVICE,
+                    host: process.env.EMAIL_HOST,
+                    port: parseInt(process.env.EMAIL_PORT || "587"),
+                    auth: {
+                        user: process.env.EMAIL_AUTH_USER,
+                        pass: process.env.EMAIL_AUTH_PASS,
+                    },
+                });
+                message = {
+                    from: process.env.EMAIL_AUTH_USER,
+                    to: process.env.EMAIL_SEND,
+                    subject: "Updated API-Covid 19 - " + new Date(),
+                    text: "Updated API-Covid to today.",
+                    html: "<p><b> Hello</b> this is the email to inform the update the API-Covid Piracicaba</p>",
+                };
+                transporter.sendMail(message, function (err, info) {
+                    if (err) {
+                        console.log("Error ocurred. " + err.message);
+                        return process.exit();
+                    }
+                    console.log("Message set: %s", info.messageId);
+                });
+                return [2 /*return*/];
             });
         }); };
     }

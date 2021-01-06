@@ -46,6 +46,8 @@ var node_cron_1 = __importDefault(require("node-cron"));
 var express_1 = __importDefault(require("express"));
 var Covid_1 = __importDefault(require("./models/Covid"));
 var cors_1 = __importDefault(require("cors"));
+var axios_1 = __importDefault(require("axios"));
+var cheerio_1 = __importDefault(require("cheerio"));
 var app = express_1.default();
 app.use(express_1.default.json());
 app.use(cors_1.default());
@@ -69,34 +71,52 @@ app.get("/dados", function (req, res) { return __awaiter(void 0, void 0, void 0,
 }); });
 function main(cond) {
     return __awaiter(this, void 0, void 0, function () {
-        var scrapping, date, day, month, year, link, error_2;
+        var scrapping, date, day_1, month_1, year_1, url, html, $_1, body, link_1, error_2;
+        var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
+                    _a.trys.push([0, 4, , 5]);
                     scrapping = new scrapping_1.default();
                     date = new Date();
-                    day = date.getDate();
-                    month = date.getMonth() + 1;
-                    year = date.getFullYear();
-                    link = "" + process.env.URL_PORTAL + (day < 10 ? "0" + day : day) + "+0" + month + "+" + year + ".aspx";
-                    console.log("It's Working");
-                    if (!process.env.URL_PORTAL) return [3 /*break*/, 2];
-                    return [4 /*yield*/, scrapping.execute(link, cond, "PortalPiracicaba", new Date(year, month - 1, day))];
+                    day_1 = date.getDate();
+                    month_1 = date.getMonth() + 1;
+                    year_1 = date.getFullYear();
+                    url = process.env.URL_PORTAL || "";
+                    return [4 /*yield*/, axios_1.default.get(url)];
                 case 1:
+                    html = _a.sent();
+                    $_1 = cheerio_1.default.load(html.data);
+                    body = $_1("body").find("div[id='imagenet-principais'] > a");
+                    body.each(function (idx, el) { return __awaiter(_this, void 0, void 0, function () {
+                        var dados, comparedDay, comparedMonth;
+                        return __generator(this, function (_a) {
+                            dados = $_1(el).attr("href");
+                            comparedDay = day_1 < 10 ? "0" + day_1 : day_1;
+                            comparedMonth = month_1 < 10 ? "0" + month_1 : month_1;
+                            if ((dados === null || dados === void 0 ? void 0 : dados.indexOf("coronavirus+" + comparedDay + "+" + comparedMonth + "+" + year_1)) != -1) {
+                                link_1 = dados;
+                            }
+                            return [2 /*return*/];
+                        });
+                    }); });
+                    console.log("It's Working");
+                    if (!process.env.URL_PORTAL) return [3 /*break*/, 3];
+                    return [4 /*yield*/, scrapping.execute("http://www.piracicaba.sp.gov.br/" + link_1, cond, "PortalPiracicaba", new Date(year_1, month_1 - 1, day_1))];
+                case 2:
                     _a.sent();
-                    _a.label = 2;
-                case 2: return [3 /*break*/, 4];
-                case 3:
+                    _a.label = 3;
+                case 3: return [3 /*break*/, 5];
+                case 4:
                     error_2 = _a.sent();
                     console.log(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
 }
-node_cron_1.default.schedule("00 00 21 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
+node_cron_1.default.schedule("00 45 19 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -111,6 +131,6 @@ node_cron_1.default.schedule("00 00 21 * * *", function () { return __awaiter(vo
     scheduled: true,
     timezone: "America/Sao_Paulo",
 });
-app.listen(process.env.PORT || 3000, function () {
+app.listen(process.env.PORT || 3333, function () {
     console.log("Online");
 });
