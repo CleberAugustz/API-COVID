@@ -54,8 +54,8 @@ var etherealEmailLog = /** @class */ (function () {
                     host: process.env.EMAIL_HOST,
                     port: parseInt(process.env.EMAIL_PORT || "587"),
                     auth: {
-                        user: process.env.EMAIL_AUTH_USER,
-                        pass: process.env.EMAIL_AUTH_PASS,
+                        user: "cleber.augustz@gmail.com",
+                        pass: "*367c3721*",
                     },
                 });
                 message = {
