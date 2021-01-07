@@ -78,8 +78,8 @@ function main(cond) {
                 case 0:
                     _a.trys.push([0, 4, , 5]);
                     scrapping = new scrapping_1.default();
-                    date = new Date()-1;
-                    day_1 = date.getDate();
+                    date = new Date();
+                    day_1 = date.getDate() - 1;
                     month_1 = date.getMonth() + 1;
                     year_1 = date.getFullYear();
                     url = process.env.URL_PORTAL || "";
@@ -116,7 +116,7 @@ function main(cond) {
         });
     });
 }
-node_cron_1.default.schedule("00 46 21 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
+node_cron_1.default.schedule("00 48 21 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
