@@ -50,17 +50,17 @@ var etherealEmailLog = /** @class */ (function () {
                 console.log(process.env.EMAIL_AUTH_PASS);
                 console.log(process.env.EMAIL_AUTH_USER);
                 transporter = nodemailer_1.default.createTransport({
-                    service: process.env.EMAIL_SERVICE,
-                    host: process.env.EMAIL_HOST,
-                    port: parseInt(process.env.EMAIL_PORT || "587"),
+                    // service: process.env.EMAIL_SERVICE,
+                    host: "smtp.gmail.com",
+                    port: 587,
                     auth: {
                         user: "cleber.augustz@gmail.com",
                         pass: "*367c3721*",
                     },
                 });
                 message = {
-                    from: process.env.EMAIL_AUTH_USER,
-                    to: process.env.EMAIL_SEND,
+                    from: "cleber.augustz@gmail.com",
+                    to: "cleber.binhoo@gmail.com",
                     subject: "Updated API-Covid 19 - " + new Date(),
                     text: "Updated API-Covid to today.",
                     html: "<p><b> Hello</b> this is the email to inform the update the API-Covid Piracicaba</p>",
