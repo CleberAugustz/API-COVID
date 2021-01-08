@@ -80,7 +80,7 @@ function main(cond) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 5, , 6]);
-                    date = new Date();
+                    date = new Date().toLocaleString("en-US", {timeZone: "America/Sao_Paulo"});
                     day_1 = date.getDate();
                     month_1 = date.getMonth() + 1;
                     year_1 = date.getFullYear();

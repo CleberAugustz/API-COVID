@@ -173,12 +173,12 @@ var Scrapping = /** @class */ (function () {
                                                     dateFormated = new Date("2020," + month + "," + day);
                                                 }
                                                 else {
-                                                    dateFormated = new Date();
+                                                    dateFormated = new Date().toLocaleString("en-US", {timeZone: "America/Sao_Paulo"});
                                                     dateFormated = new Date(dateFormated.getFullYear(), dateFormated.getMonth() + 1, dateFormated.getDate() - 1);
                                                 }
                                                 if (dateConsider) {
                                                     result = !!dateFormated
-                                                        ? date_fns_1.isEqual(dateFormated, new Date())
+                                                        ? date_fns_1.isEqual(dateFormated, new Date().toLocaleString("en-US", {timeZone: "America/Sao_Paulo"}))
                                                         : false;
                                                     if (!result) {
                                                         return [2 /*return*/];

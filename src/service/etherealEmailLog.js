@@ -58,7 +58,7 @@ var etherealEmailLog = /** @class */ (function () {
                 message = {
                     from: process.env.EMAIL_AUTH_USER,
                     to: process.env.EMAIL_SEND,
-                    subject: "Updated API-Covid 19 - " + new Date(),
+                    subject: "Updated API-Covid 19 - " + new Date().toLocaleString("en-US", {timeZone: "America/Sao_Paulo"}),
                     text: "Updated API-Covid to today.",
                     html: "<p><b> Hello</b> this is the email to inform the update the API-Covid Piracicaba</p>",
                 };
