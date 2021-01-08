@@ -48,7 +48,6 @@ var etherealEmailLog = /** @class */ (function () {
             return __generator(this, function (_a) {
                 console.log("Credentials obtainer, sending message...");
                 transporter = nodemailer_1.default.createTransport({
-                    // service: process.env.EMAIL_SERVICE,
                     host: process.env.EMAIL_HOST,
                     ignoreTLS: false,
                     secure: false,
