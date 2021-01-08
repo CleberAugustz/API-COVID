@@ -48,6 +48,9 @@ var Covid_1 = __importDefault(require("./models/Covid"));
 var cors_1 = __importDefault(require("cors"));
 var axios_1 = __importDefault(require("axios"));
 var cheerio_1 = __importDefault(require("cheerio"));
+var etherealEmailLog_1 = __importDefault(require("./service/etherealEmailLog"));
+var scrapping = new scrapping_1.default();
+var EtherealEmailLog = new etherealEmailLog_1.default();
 var app = express_1.default();
 app.use(express_1.default.json());
 app.use(cors_1.default());
@@ -71,15 +74,14 @@ app.get("/dados", function (req, res) { return __awaiter(void 0, void 0, void 0,
 }); });
 function main(cond) {
     return __awaiter(this, void 0, void 0, function () {
-        var scrapping, date, day_1, month_1, year_1, url, html, $_1, body, link_1, error_2;
+        var date, day_1, month_1, year_1, url, html, $_1, body, link_1, error_2;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 4, , 5]);
-                    scrapping = new scrapping_1.default();
+                    _a.trys.push([0, 5, , 6]);
                     date = new Date();
-                    day_1 = date.getDate() - 1;
+                    day_1 = date.getDate();
                     month_1 = date.getMonth() + 1;
                     year_1 = date.getFullYear();
                     url = process.env.URL_PORTAL || "";
@@ -106,17 +108,20 @@ function main(cond) {
                 case 2:
                     _a.sent();
                     _a.label = 3;
-                case 3: return [3 /*break*/, 5];
+                case 3: return [4 /*yield*/, EtherealEmailLog.execute()];
                 case 4:
+                    _a.sent();
+                    return [3 /*break*/, 6];
+                case 5:
                     error_2 = _a.sent();
                     console.log(error_2);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });
 }
-node_cron_1.default.schedule("00 32 11 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
+node_cron_1.default.schedule("00  05 14 * *", function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:

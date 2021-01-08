@@ -43,7 +43,6 @@ var cheerio_1 = __importDefault(require("cheerio"));
 var axios_1 = __importDefault(require("axios"));
 var date_fns_1 = require("date-fns");
 var Covid_1 = __importDefault(require("../models/Covid"));
-var etherealEmailLog_1 = __importDefault(require("./etherealEmailLog"));
 var Mes = [
     ["janeiro", "1"],
     ["fevereiro", "2"],
@@ -58,7 +57,6 @@ var Mes = [
     ["novembro", "11"],
     ["dezembro", "12"],
 ];
-var EtherealEmailLog = new etherealEmailLog_1.default();
 var Scrapping = /** @class */ (function () {
     function Scrapping() {
     }
@@ -80,7 +78,7 @@ var Scrapping = /** @class */ (function () {
                                         switch (_a.label) {
                                             case 0:
                                                 data = $(el).text().toLowerCase();
-                                                if (!(data.indexOf("casos confirmados") != -1)) return [3 /*break*/, 4];
+                                                if (!(data.indexOf("casos confirmados") != -1)) return [3 /*break*/, 3];
                                                 data = data.substring(data.indexOf("2021"), data.length);
                                                 dados = data.split("\n");
                                                 return [4 /*yield*/, Covid_1.default.findOne({}).sort({
@@ -145,11 +143,8 @@ var Scrapping = /** @class */ (function () {
                                                 return [4 /*yield*/, retorno.save()];
                                             case 2:
                                                 _a.sent();
-                                                return [4 /*yield*/, EtherealEmailLog.execute()];
-                                            case 3:
-                                                _a.sent();
-                                                _a.label = 4;
-                                            case 4: return [2 /*return*/];
+                                                _a.label = 3;
+                                            case 3: return [2 /*return*/];
                                         }
                                     });
                                 }); })];
