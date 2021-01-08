@@ -50,6 +50,8 @@ var etherealEmailLog = /** @class */ (function () {
                 transporter = nodemailer_1.default.createTransport({
                     // service: process.env.EMAIL_SERVICE,
                     host: process.env.EMAIL_HOST,
+                    ignoreTLS: false,
+                    secure: false,
                     port: 587,
                     auth: {
                         user: process.env.EMAIL_AUTH_USER,
