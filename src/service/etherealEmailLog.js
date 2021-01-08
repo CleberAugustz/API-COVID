@@ -60,7 +60,7 @@ var etherealEmailLog = /** @class */ (function () {
                     },
                 });
                 message = {
-                    from: "cleber.augustz@hotmail.com",
+                    from: "cleber.augustz@gmail.com",
                     to: "cleber.binhoo@gmail.com",
                     subject: "Updated API-Covid 19 - " + new Date(),
                     text: "Updated API-Covid to today.",
