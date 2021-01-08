@@ -51,11 +51,9 @@ var etherealEmailLog = /** @class */ (function () {
                 console.log(process.env.EMAIL_AUTH_USER);
                 transporter = nodemailer_1.default.createTransport({
                     // service: process.env.EMAIL_SERVICE,
-                    // host: "smtp.gmail.com",
-                    // port: 587,
-                    host: "smtp-mail.outlook.com", // hostname
-                    secureConnection: false, // TLS requires secureConnection to be false
-                    port: 587, // port for secure SMTP
+                    host: "smtp.gmail.com",
+                    port: 587,
+                    secure: true,
                     auth: {
                         user: process.env.EMAIL_AUTH_USER,
                         pass: process.env.EMAIL_AUTH_PASS,
