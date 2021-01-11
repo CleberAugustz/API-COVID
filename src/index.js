@@ -80,7 +80,7 @@ function main(cond) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 5, , 6]);
-                    date = new Date().toLocaleString("en-US", {timeZone: "America/Sao_Paulo"});
+                    date = new Date();
                     day_1 = date.getDate();
                     month_1 = date.getMonth() + 1;
                     year_1 = date.getFullYear();
@@ -89,11 +89,12 @@ function main(cond) {
                 case 1:
                     html = _a.sent();
                     $_1 = cheerio_1.default.load(html.data);
-                    body = $_1("body").find("div[id='imagenet-principais'] > a");
+                    body = $_1("body").find("ul[id='imagenet-editais'] > li");
                     body.each(function (idx, el) { return __awaiter(_this, void 0, void 0, function () {
-                        var dados, comparedDay, comparedMonth;
+                        var a, dados, comparedDay, comparedMonth;
                         return __generator(this, function (_a) {
-                            dados = $_1(el).attr("href");
+                            a = $_1(el).find("a");
+                            dados = $_1(a).attr("href");
                             comparedDay = day_1 < 10 ? "0" + day_1 : day_1;
                             comparedMonth = month_1 < 10 ? "0" + month_1 : month_1;
                             if ((dados === null || dados === void 0 ? void 0 : dados.indexOf("coronavirus+" + comparedDay + "+" + comparedMonth + "+" + year_1)) != -1) {
@@ -121,7 +122,7 @@ function main(cond) {
         });
     });
 }
-node_cron_1.default.schedule("00 00 19 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
+node_cron_1.default.schedule("00 50 19 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
