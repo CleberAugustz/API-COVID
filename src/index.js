@@ -105,7 +105,7 @@ function main(cond) {
                     }); });
                     console.log("It's Working");
                     if (!process.env.URL_PORTAL) return [3 /*break*/, 3];
-                    return [4 /*yield*/, scrapping.execute("http://www.piracicaba.sp.gov.br/" + link_1, cond, "PortalPiracicaba", new Date(year_1, month_1 - 1, day_1))];
+                    return [4 /*yield*/, scrapping.execute("http://www.piracicaba.sp.gov.br/" + link_1, cond, "PortalPiracicaba", new Date(year_1, month_1 - 1, day_1, 19))];
                 case 2:
                     _a.sent();
                     _a.label = 3;
@@ -122,7 +122,7 @@ function main(cond) {
         });
     });
 }
-node_cron_1.default.schedule("00 50 19 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
+node_cron_1.default.schedule("00 00 20 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
