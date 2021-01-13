@@ -122,7 +122,7 @@ function main(cond) {
         });
     });
 }
-node_cron_1.default.schedule("00 00 20 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
+node_cron_1.default.schedule("00 00 19 * * *", function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
