@@ -1,5 +1,5 @@
-# Websrapping Facebook TypeScript
+# API do covidPiracicaba
 
-## Bibliotecas
+## Bibliotecas utilizadas
 
 ### Axios, Dotenv, Cheerio, Typeorm, Mongodb.
